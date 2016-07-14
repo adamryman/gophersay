@@ -1,7 +1,7 @@
 # gophersay
 
 ```
-$ go install github.com/adamryman.com/gophersay
+$ go get github.com/adamryman.com/gophersay
 $ gophersay
  ------------------------
  Concurrency is not parallelism
