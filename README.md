@@ -1,31 +1,31 @@
 # gophersay
 
 ```
-$ go get github.com/adamryman.com/gophersay
+$ go get github.com/adamryman/gophersay
 $ gophersay
  ------------------------
  Concurrency is not parallelism
  ------------------------
    \
     \
-     \   ,_---~~~~~----._         
-  _,,_,*^____      _____``*g*\"*, 
- / __/ /'     ^.  /      \ ^@q   f 
-[  @f | @))    |  | @))   l  0 _/  
- \`/   \~____ / __ \_____/    \   
-  |           _l__l_           I   
-  }          [______]           I  
-  ]            | | |            |  
-  ]             ~ ~             |  
-  |                            |   
-   |                           |   
+     \   ,_---~~~~~----._
+  _,,_,*^____      _____``*g*\"*,
+ / __/ /'     ^.  /      \ ^@q   f
+[  @f | @))    |  | @))   l  0 _/
+ \`/   \~____ / __ \_____/    \
+  |           _l__l_           I
+  }          [______]           I
+  ]            | | |            |
+  ]             ~ ~             |
+  |                            |
+   |                           |
 ```
 
 `gophersay` is `cowsay` with Go Proverbs
 
 Included is `gophersay.sh` which is the bash equivalent of this go program as a bash script.
 
-I recommend you add this to the end of your `.bash_profile`. \ʕ◔ϖ◔ʔ/ 
+I recommend you add this to the end of your `.bash_profile`. \ʕ◔ϖ◔ʔ/
 
 ## Credits
 
