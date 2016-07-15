@@ -29,11 +29,45 @@ I recommend you add this to the end of your `.bash_profile`. \ʕ◔ϖ◔ʔ/
 
 ## Uses
 
+### Command line args
+
 Say whatever you want!
 ```
 $ gophersay gosay is a better name, wish I would have thought of that
  ------------------------
 gosay is a better name, wish I would have thought of that
+ ------------------------
+   \
+    \
+     \   ,_---~~~~~----._
+  _,,_,*^____      _____``*g*\"*,
+ / __/ /'     ^.  /      \ ^@q   f
+[  @f | @))    |  | @))   l  0 _/
+ \`/   \~____ / __ \_____/    \
+  |           _l__l_           I
+  }          [______]           I
+  ]            | | |            |
+  ]             ~ ~             |
+  |                            |
+   |                           |
+
+```
+
+### Stdin
+
+```
+$ tail main.go | gophersay
+ ------------------------
+		// Seed rand for psudo random numbers
+		rand.Seed(time.Now().UnixNano())
+
+		saying = sayings[rand.Intn(len(sayings))]
+	}
+
+	fmt.Println(" ------------------------")
+	fmt.Println(saying)
+	fmt.Print(gopherArt)
+}
  ------------------------
    \
     \

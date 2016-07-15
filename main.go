@@ -2,9 +2,11 @@
 package main
 
 import (
+	"bufio"
 	"flag"
 	"fmt"
 	"math/rand"
+	"os"
 	"strings"
 	"time"
 
@@ -13,6 +15,7 @@ import (
 
 var sayings []string
 var gopherArt string
+var stdIn bool
 
 func init() {
 
@@ -40,6 +43,12 @@ func init() {
 		"Don't panic.",
 	}
 	flag.Parse()
+	stat, _ := os.Stdin.Stat()
+	if (stat.Mode() & os.ModeCharDevice) == 0 {
+		stdIn = true
+	} else {
+		stdIn = false
+	}
 }
 
 func main() {
@@ -48,7 +57,22 @@ func main() {
 	// If there are any command line arguments, join them together with spaces
 	// and output them as the saying
 	// otherwise output a saying from the list
-	if len(flag.Args()) > 0 {
+	if stdIn {
+		data := os.Stdin
+		scan := bufio.NewScanner(data)
+		var stdInSlice []string
+		for scan.Scan() {
+			stdInSlice = append(stdInSlice, scan.Text()+"\n")
+		}
+		// Take the newline off the last line
+		lastLine := stdInSlice[len(stdInSlice)-1]
+		lastLine = strings.TrimSuffix(lastLine, "\n")
+		stdInSlice[len(stdInSlice)-1] = lastLine
+
+		// Join the lines
+		saying = strings.Join(stdInSlice, "")
+
+	} else if len(flag.Args()) > 0 {
 		saying = strings.Join(flag.Args(), " ")
 	} else {
 		// Seed rand for psudo random numbers
