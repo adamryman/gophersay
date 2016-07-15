@@ -27,6 +27,36 @@ Included is `gophersay.sh` which is the bash equivalent of this go program as a 
 
 I recommend you add this to the end of your `.bash_profile`. \ʕ◔ϖ◔ʔ/
 
+## Uses
+
+Say whatever you want!
+```
+$ gophersay gosay is a better name, wish I would have thought of that
+ ------------------------
+gosay is a better name, wish I would have thought of that
+ ------------------------
+   \
+    \
+     \   ,_---~~~~~----._
+  _,,_,*^____      _____``*g*\"*,
+ / __/ /'     ^.  /      \ ^@q   f
+[  @f | @))    |  | @))   l  0 _/
+ \`/   \~____ / __ \_____/    \
+  |           _l__l_           I
+  }          [______]           I
+  ]            | | |            |
+  ]             ~ ~             |
+  |                            |
+   |                           |
+
+```
+
+## Generate art
+
+```
+# From the gophersay directory
+$ go generate
+```
 ## Credits
 
 Go Proverbs http://go-proverbs.github.io/

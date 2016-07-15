@@ -1,21 +1,26 @@
+//go:generate go-bindata -o gopherart/gopherart.go -pkg gopherart gopherart/gopher.ascii
 package main
 
 import (
+	"flag"
 	"fmt"
 	"math/rand"
+	"strings"
 	"time"
+
+	"github.com/adamryman/gophersay/gopherart"
 )
 
 var sayings []string
 var gopherArt string
 
 func init() {
-	rand.Seed(time.Now().UnixNano())
-	gopherArtBytes, _ := gopherAsciiBytes()
+
+	// Load in gopher ascii art from go-bindata
+	gopherArtBytes, _ := gopherart.Asset("gopherart/gopher.ascii")
 	gopherArt = string(gopherArtBytes)
 	sayings = []string{
-		"Don't communicate by sharing memory, share memory by communicating.",
-		"Concurrency is not parallelism.",
+		"Don't communicate by sharing memory, share memory by communicating.", "Concurrency is not parallelism.",
 		"Channels orchestrate; mutexes serialize.",
 		"The bigger the interface, the weaker the abstraction.",
 		"Make the zero value useful.",
@@ -34,10 +39,23 @@ func init() {
 		"Documentation is for users.",
 		"Don't panic.",
 	}
+	flag.Parse()
 }
 
 func main() {
-	saying := sayings[rand.Intn(len(sayings))]
+	var saying string
+
+	// If there are any command line arguments, join them together with spaces
+	// and output them as the saying
+	// otherwise output a saying from the list
+	if len(flag.Args()) > 0 {
+		saying = strings.Join(flag.Args(), " ")
+	} else {
+		// Seed rand for psudo random numbers
+		rand.Seed(time.Now().UnixNano())
+
+		saying = sayings[rand.Intn(len(sayings))]
+	}
 
 	fmt.Println(" ------------------------")
 	fmt.Println(saying)
