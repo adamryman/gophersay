@@ -10,6 +10,8 @@ import (
 	"strings"
 	"time"
 
+	"golang.org/x/crypto/ssh/terminal"
+
 	"github.com/adamryman/gophersay/gopherart"
 )
 
@@ -43,11 +45,10 @@ func init() {
 		"Don't panic.",
 	}
 	flag.Parse()
-	stat, _ := os.Stdin.Stat()
-	if (stat.Mode() & os.ModeCharDevice) == 0 {
-		stdIn = true
-	} else {
+	if terminal.IsTerminal(int(os.Stdin.Fd())) {
 		stdIn = false
+	} else {
+		stdIn = true
 	}
 }
 
