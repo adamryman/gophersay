@@ -19,7 +19,10 @@ var sayings []string
 var gopherArt string
 var stdIn bool
 
+var isWindows bool
+
 func init() {
+	flag.BoolVar(&isWindows, "w", false, "Use to make stdin work on windows")
 
 	// Load in gopher ascii art from go-bindata
 	gopherArtBytes, _ := gopherart.Asset("gopherart/gopher.ascii")
@@ -44,21 +47,16 @@ func init() {
 		"Documentation is for users.",
 		"Don't panic.",
 	}
-	flag.Parse()
-	if terminal.IsTerminal(int(os.Stdin.Fd())) {
-		stdIn = false
-	} else {
-		stdIn = true
-	}
 }
 
 func main() {
+	flag.Parse()
 	var saying string
 
 	// If there are any command line arguments, join them together with spaces
 	// and output them as the saying
 	// otherwise output a saying from the list
-	if stdIn {
+	if isStdIn() {
 		data := os.Stdin
 		scan := bufio.NewScanner(data)
 		var stdInSlice []string
@@ -85,4 +83,22 @@ func main() {
 	fmt.Println(" ------------------------")
 	fmt.Println(saying)
 	fmt.Print(gopherArt)
+}
+
+func isStdIn() bool {
+	if isWindows {
+		if terminal.IsTerminal(int(os.Stdin.Fd())) {
+			return false
+		}
+		return true
+	}
+
+	stat, err := os.Stdin.Stat()
+	if err != nil {
+		return false
+	}
+	if (stat.Mode() & os.ModeCharDevice) == 0 {
+		return true
+	}
+	return false
 }
