@@ -1,0 +1,18 @@
+language: go
+
+os:
+  - linux
+
+go:
+  - 1.10.x
+  - 1.11.x
+  - tip
+
+# use containers which run faster and have cache
+sudo: false
+
+script:
+  - go build ./...
+
+notifications:
+  email: false

@@ -3,6 +3,7 @@ package gopher
 import (
 	"fmt"
 	"io"
+	"log"
 	"math/rand"
 	"time"
 
@@ -16,7 +17,10 @@ var (
 
 func init() {
 	// Load in gopher ascii art from go-bindata
-	gopherArtBytes, _ := gopherart.Asset("gopherart/gopher.ascii")
+	gopherArtBytes, err := gopherart.Asset("gopherart/gopher.ascii")
+	if err != nil {
+		log.Fatal(err)
+	}
 	gopherArt = string(gopherArtBytes)
 	sayings = []string{
 		"Don't communicate by sharing memory, share memory by communicating.", "Concurrency is not parallelism.",
