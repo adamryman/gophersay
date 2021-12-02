@@ -1,4 +1,3 @@
-//go:generate go-bindata -o gopherart/gopherart.go -pkg gopherart gopherart/gopher.ascii
 package main
 
 import (
@@ -7,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/adamryman/gophersay/gopher"
-	"golang.org/x/crypto/ssh/terminal"
+	"golang.org/x/term"
 )
 
 func main() {
@@ -19,7 +18,7 @@ func main() {
 	}
 
 	// If there is no data on stdin
-	if terminal.IsTerminal(int(os.Stdin.Fd())) {
+	if term.IsTerminal(int(os.Stdin.Fd())) {
 		gopher.Proverb(os.Stdout)
 		return
 	}
@@ -31,6 +30,7 @@ func main() {
 	for scan.Scan() {
 		stdInSlice = append(stdInSlice, scan.Text()+"\n")
 	}
+
 	// Take the newline off the last line
 	lastLine := stdInSlice[len(stdInSlice)-1]
 	lastLine = strings.TrimSuffix(lastLine, "\n")
