@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/adamryman/gophersay/gopher"
-	"golang.org/x/crypto/ssh/terminal"
+	"golang.org/x/term"
 )
 
 func main() {
@@ -18,7 +18,7 @@ func main() {
 	}
 
 	// If there is no data on stdin
-	if terminal.IsTerminal(int(os.Stdin.Fd())) {
+	if term.IsTerminal(int(os.Stdin.Fd())) {
 		gopher.Proverb(os.Stdout)
 		return
 	}
