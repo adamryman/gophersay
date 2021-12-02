@@ -1,4 +1,3 @@
-//go:generate go-bindata -o gopherart/gopherart.go -pkg gopherart gopherart/gopher.ascii
 package main
 
 import (
@@ -31,6 +30,7 @@ func main() {
 	for scan.Scan() {
 		stdInSlice = append(stdInSlice, scan.Text()+"\n")
 	}
+
 	// Take the newline off the last line
 	lastLine := stdInSlice[len(stdInSlice)-1]
 	lastLine = strings.TrimSuffix(lastLine, "\n")
